@@ -1,80 +1,92 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif" });
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({ 
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "International Network Advisors | Telecommunications & Regulatory Strategy",
-  description: "Boutique executive consulting firm specializing in global telecommunications strategy.",
+  title: "International Network Advisors | Telecom & Regulatory Strategy",
+  description: "Boutique executive consulting firm specializing in telecommunications regulatory strategy across the Americas and Caribbean.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable} scroll-smooth`}>
-      <body className="font-sans antialiased bg-[#fafafa] text-[#1a1a1a] min-h-screen flex flex-col">
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.variable} ${playfair.variable} antialiased`}>
         
-        {/* GLOBAL EXECUTIVE NAVBAR */}
-        <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100/80">
-          <div className="max-w-6xl mx-auto px-8 h-24 flex items-center justify-between">
-            
-            {/* LOGOTIPO INSTITUCIONAL */}
-            <Link href="/" className="flex items-center space-x-3 tracking-[0.2em] uppercase">
-              <div className="w-2.5 h-2.5 bg-slate-900 rounded-full" />
-              <div className="leading-tight">
-                <span className="font-semibold text-sm block text-slate-900">International</span>
-                <span className="text-[9px] text-slate-400 block font-medium tracking-[0.3em]">Network Advisors</span>
-              </div>
-            </Link>
-            
-            {/* NAVEGACIÓN PRINCIPAL HORIZONTAL */}
-            <nav className="hidden md:flex items-center space-x-12 text-[11px] font-medium tracking-[0.25em] uppercase text-slate-500">
-              <Link href="/about" className="hover:text-slate-900 transition-colors duration-300 relative py-2 group">
-                About us
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-950 transition-all duration-300 group-hover:w-full" />
-              </Link>
-              <Link href="/practices" className="hover:text-slate-900 transition-colors duration-300 relative py-2 group">
-                Practice Areas
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-950 transition-all duration-300 group-hover:w-full" />
-              </Link>
-              <Link href="/leadership" className="hover:text-slate-900 transition-colors duration-300 relative py-2 group">
-                Leadership
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-950 transition-all duration-300 group-hover:w-full" />
-              </Link>
-              <Link href="/contact" className="hover:text-slate-900 transition-colors duration-300 relative py-2 group">
-                Contact us
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-950 transition-all duration-300 group-hover:w-full" />
-              </Link>
+        {/* SIDEBAR — Left identity column */}
+        <aside className="ina-sidebar">
+          <Link href="/" className="ina-brand">
+            <div className="ina-monogram">
+              <span>INA</span>
+            </div>
+            <div className="ina-brand-text">
+              <span className="ina-brand-name">International</span>
+              <span className="ina-brand-sub">Network Advisors</span>
+            </div>
+          </Link>
+          
+          {/* Meridian line — the signature visual element */}
+          <div className="meridian-container" aria-hidden="true">
+            <svg viewBox="0 0 2 180" preserveAspectRatio="none" className="meridian-svg">
+              <line x1="1" y1="0" x2="1" y2="180" className="meridian-line" />
+              <circle cx="1" cy="60" r="1.5" className="meridian-dot" />
+              <circle cx="1" cy="120" r="1" className="meridian-dot meridian-dot--small" />
+            </svg>
+            <div className="meridian-labels">
+              <span>Americas</span>
+              <span>Caribbean</span>
+            </div>
+          </div>
+
+          <div className="ina-sidebar-footer">
+            <span className="ina-tagline">Boutique Advisory</span>
+            <span className="ina-year">Est. 2026</span>
+          </div>
+        </aside>
+
+        {/* MAIN CONTENT AREA */}
+        <div className="ina-main">
+          
+          {/* TOP NAV */}
+          <header className="ina-header">
+            <nav className="ina-nav">
+              <Link href="/about" className="ina-nav-link">About Us</Link>
+              <Link href="/practices" className="ina-nav-link">Practice Areas</Link>
+              <Link href="/leadership" className="ina-nav-link">Leadership</Link>
+              <Link href="/contact" className="ina-nav-link">Contact</Link>
             </nav>
-            
-            {/* INDICADOR GEOGRÁFICO */}
-            <div className="hidden lg:block text-[9px] tracking-[0.25em] uppercase text-slate-400 font-medium">
-              HQ &bull; New York
+
+            <div className="ina-status">
+              <span className="ina-status-dot" />
+              <span>Global Intelligence</span>
             </div>
+          </header>
 
-          </div>
-        </header>
+          {/* PAGE CONTENT */}
+          <main className="ina-content">
+            {children}
+          </main>
 
-        {/* CONTENIDO PRINCIPAL */}
-        <main className="flex-grow">
-          {children}
-        </main>
-
-        {/* FOOTER CORPORATIVO SOBERBIO */}
-        <footer className="border-t border-slate-100 bg-white py-16 text-[10px] tracking-[0.2em] uppercase text-slate-400 font-medium">
-          <div className="max-w-6xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <p>&copy; 2026 International Network Advisors LLC.</p>
-            <div className="flex space-x-8 text-slate-300">
-              <span>Privacy Policy</span>
-              <span>&bull;</span>
-              <span>Terms of Engagement</span>
-              <span>&bull;</span>
-              <span className="text-slate-400">Confidential</span>
+          {/* FOOTER */}
+          <footer className="ina-footer">
+            <div className="ina-footer-inner">
+              <p>&copy; {new Date().getFullYear()} International Network Advisors. All rights reserved.</p>
+              <p className="ina-footer-note">Confidential &mdash; Institutional Use Only</p>
             </div>
-          </div>
-        </footer>
+          </footer>
+        </div>
 
       </body>
     </html>

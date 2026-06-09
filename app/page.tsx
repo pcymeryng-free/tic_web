@@ -5,58 +5,61 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-[calc(100vh-6rem)] flex flex-col justify-between bg-white">
-      
-      {/* SECCIÓN PRINCIPAL HERO (Estilo Editorial Premium) */}
-      <section className="max-w-4xl mx-auto px-8 pt-24 pb-16 text-center space-y-12">
-        <span className="text-[10px] font-semibold tracking-[0.3em] uppercase text-slate-400 block">
-          Strategic Advisory &bull; Global Telecommunications
-        </span>
+    <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+
+      {/* ── HERO ── */}
+      <section style={{ paddingTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
         
-        {/* Uso de la fuente Serif corporativa */}
-        <h1 className="font-serif text-4xl md:text-6xl font-normal text-slate-900 leading-[1.2] tracking-tight max-w-4xl mx-auto">
-          Navigating the regulatory, commercial, and technical complexities of connected markets.
+        <span className="ina-eyebrow">Executive Advisory</span>
+
+        <h1 className="ina-display">
+          Navigating the complexity of<br />
+          <strong>global telecommunications.</strong>
         </h1>
-        
-        <p className="text-base md:text-lg text-slate-500 font-light leading-relaxed max-w-2xl mx-auto">
-          International Network Advisors provides high-stakes counsel to multinational operators, investment funds, and sovereign entities across the Americas and the Caribbean Basin.
+
+        <p className="ina-lead">
+          International Network Advisors (INA) is a boutique executive consulting firm 
+          bridging the gap between complex regulatory environments, multinational operators, 
+          and strategic market entry across the Americas and the Caribbean.
         </p>
-        
-        <div className="pt-4">
-          <Link 
-            href="/practices" 
-            className="text-[11px] font-semibold tracking-[0.25em] uppercase border-b border-slate-900 pb-2 text-slate-900 hover:text-slate-400 hover:border-slate-400 transition-all duration-300"
-          >
-            Explore Practice Areas
+
+        <div style={{ paddingTop: '0.5rem' }}>
+          <Link href="/practices" className="ina-cta">
+            Explore Practice Areas &rarr;
           </Link>
         </div>
       </section>
 
-      {/* BLOQUE DE TRES PILARES CORPORATIVOS (Simetría Absoluta) */}
-      <section className="bg-[#fcfcfc] border-t border-b border-slate-100 py-20 w-full">
-        <div className="max-w-6xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-16">
+      {/* ── DIVIDER ── */}
+      <hr className="ina-divider" />
+
+      {/* ── THREE PILLARS ── */}
+      <section>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', 
+          gap: '0',
+          borderTop: '1px solid var(--mist)'
+        }}>
           
-          <div className="space-y-4">
-            <span className="text-[10px] font-bold text-slate-300 tracking-widest block font-mono">I.</span>
-            <h3 className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-900">Operator Advantage</h3>
-            <p className="text-xs text-slate-400 leading-relaxed font-light">
-              We leverage decades of operator-side C-suite execution to deliver practical, unvarnished guidance tailored for complex international markets.
+          <div className="ina-pillar" style={{ borderRight: '1px solid var(--mist)', paddingRight: '2rem' }}>
+            <h3 className="ina-pillar-title">Operator Advantage</h3>
+            <p className="ina-pillar-text">
+              Decades of practical C-suite execution in complex, high-stakes telecom markets.
             </p>
           </div>
-          
-          <div className="space-y-4">
-            <span className="text-[10px] font-bold text-slate-300 tracking-widest block font-mono">II.</span>
-            <h3 className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-900">Regulatory Strategy</h3>
-            <p className="text-xs text-slate-400 leading-relaxed font-light">
-              Expert synchronization of cross-border spectrum licensing, sovereign compliance frameworks, and multilateral governmental relations.
+
+          <div className="ina-pillar" style={{ borderRight: '1px solid var(--mist)', padding: '2rem 2rem 0' }}>
+            <h3 className="ina-pillar-title">Regional Footprint</h3>
+            <p className="ina-pillar-text">
+              Active networks and deep jurisdiction understanding across the Caribbean and Americas.
             </p>
           </div>
-          
-          <div className="space-y-4">
-            <span className="text-[10px] font-bold text-slate-300 tracking-widest block font-mono">III.</span>
-            <h3 className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-900">Global Connectivity</h3>
-            <p className="text-xs text-slate-400 leading-relaxed font-light">
-              Unrivaled strategic access to tier-one private operators and policy decision-makers across the Caribbean, Latin America, and global corridors.
+
+          <div className="ina-pillar" style={{ paddingLeft: '2rem' }}>
+            <h3 className="ina-pillar-title">Regulatory Strategy</h3>
+            <p className="ina-pillar-text">
+              Expert management of spectrum licensing and alignment with state institutions.
             </p>
           </div>
 

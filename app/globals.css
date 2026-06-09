@@ -2,17 +2,446 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+/* ─────────────────────────────────────────────
+   INA Design System — International Network Advisors
+   Palette:
+     Ivory:     #F7F5F0  (background)
+     Navy:      #0D1F2D  (primary text / brand)
+     Gold:      #B8965A  (accent)
+     Steel:     #6B7F8E  (secondary text)
+     Mist:      #E8E4DC  (borders / dividers)
+   Typography:
+     Display:   Playfair Display (serif) — authority + distinction
+     Body:      Inter — precision + legibility
+───────────────────────────────────────────── */
+
+:root {
+  --ivory:     #F7F5F0;
+  --navy:      #0D1F2D;
+  --navy-mid:  #1A3347;
+  --gold:      #B8965A;
+  --gold-light:#D4B07A;
+  --steel:     #6B7F8E;
+  --mist:      #E8E4DC;
+  --white:     #FFFFFF;
+
+  --font-display: var(--font-playfair), 'Georgia', serif;
+  --font-body:    var(--font-inter), system-ui, sans-serif;
+
+  --sidebar-w: 280px;
+  --header-h:  72px;
 }
+
+/* ── Reset / Base ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: #ffffff;
-  color: #1a1a1a;
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body);
+  background-color: var(--ivory);
+  color: var(--navy);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  min-height: 100vh;
 }
 
-/* Aplicación de fuente Serif para los títulos corporativos */
-h1, h2, .font-serif {
-  font-family: var(--font-serif), Georgia, serif;
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--ivory); }
+::-webkit-scrollbar-thumb { background: var(--mist); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--steel); }
+
+/* ────────────────────────────────────────────
+   SIDEBAR
+──────────────────────────────────────────── */
+.ina-sidebar {
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: var(--navy);
+  display: none;
+  flex-direction: column;
+  padding: 2.5rem 2rem;
+  z-index: 50;
+  border-right: 1px solid var(--navy-mid);
+}
+
+@media (min-width: 1024px) {
+  .ina-sidebar { display: flex; }
+}
+
+/* Brand */
+.ina-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ina-monogram {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s ease;
+}
+
+.ina-monogram span {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+}
+
+.ina-brand:hover .ina-monogram {
+  background: var(--gold);
+}
+
+.ina-brand:hover .ina-monogram span {
+  color: var(--navy);
+}
+
+.ina-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ina-brand-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #F7F5F0;
+  letter-spacing: 0.01em;
+}
+
+.ina-brand-sub {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+/* Meridian line — signature element */
+.meridian-container {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  padding: 2rem 0;
+  align-items: stretch;
+}
+
+.meridian-svg {
+  width: 2px;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.meridian-line {
+  stroke: var(--navy-mid);
+  stroke-width: 1;
+}
+
+.meridian-dot {
+  fill: var(--gold);
+  animation: pulse-dot 3s ease-in-out infinite;
+}
+
+.meridian-dot--small {
+  fill: var(--steel);
+  animation-delay: 1.5s;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.4; r: 1.5px; }
+  50%       { opacity: 1;   r: 2.5px; }
+}
+
+.meridian-labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1rem 0;
+}
+
+.meridian-labels span {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--steel);
+  transition: color 0.2s;
+}
+
+.ina-sidebar:hover .meridian-labels span {
+  color: var(--gold-light);
+}
+
+/* Sidebar footer */
+.ina-sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ina-tagline {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+.ina-year {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--navy-mid);
+}
+
+/* ────────────────────────────────────────────
+   MAIN LAYOUT
+──────────────────────────────────────────── */
+.ina-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+@media (min-width: 1024px) {
+  .ina-main { padding-left: var(--sidebar-w); }
+}
+
+/* ── Header ── */
+.ina-header {
+  height: var(--header-h);
+  background: rgba(247, 245, 240, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--mist);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+}
+
+.ina-nav {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.ina-nav-link {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--steel);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.2s ease;
+}
+
+.ina-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.ina-nav-link:hover {
+  color: var(--navy);
+}
+
+.ina-nav-link:hover::after {
+  width: 100%;
+}
+
+/* Status pill */
+.ina-status {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+@media (min-width: 640px) {
+  .ina-status { display: flex; }
+}
+
+.ina-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+/* ── Content ── */
+.ina-content {
+  flex: 1;
+  max-width: 780px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 4rem 3rem 5rem;
+}
+
+/* ── Footer ── */
+.ina-footer {
+  border-top: 1px solid var(--mist);
+  background: var(--ivory);
+}
+
+.ina-footer-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+@media (min-width: 640px) {
+  .ina-footer-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.ina-footer-inner p {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin: 0;
+}
+
+.ina-footer-note {
+  color: var(--mist) !important;
+}
+
+/* ────────────────────────────────────────────
+   GLOBAL TYPOGRAPHIC ELEMENTS
+──────────────────────────────────────────── */
+.ina-eyebrow {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.ina-display {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+}
+
+.ina-display strong {
+  font-weight: 700;
+  font-style: italic;
+}
+
+.ina-lead {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--steel);
+  font-weight: 300;
+  max-width: 56ch;
+}
+
+.ina-divider {
+  border: none;
+  border-top: 1px solid var(--mist);
+}
+
+/* Pillar cards */
+.ina-pillar {
+  padding-top: 2rem;
+}
+
+.ina-pillar-title {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 0.6rem;
+  position: relative;
+  padding-left: 0.75rem;
+}
+
+.ina-pillar-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 10px;
+  background: var(--gold);
+}
+
+.ina-pillar-text {
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--steel);
+  font-weight: 300;
+  padding-left: 0.75rem;
+}
+
+/* CTA link */
+.ina-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--navy);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.ina-cta:hover {
+  color: var(--gold);
+}
+
+/* Fade-in animation */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-up 0.6s ease forwards;
 }

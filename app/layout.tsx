@@ -13,63 +13,74 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} antialiased bg-slate-50 text-slate-800 flex flex-col min-h-screen`}>
+      <body className={`${inter.className} antialiased bg-white text-slate-900 min-h-screen flex`}>
         
-{/* HEADER / NAVBAR ELEGANTE DISTRIBUIDO A LO ANCHO */}
-<header className="sticky top-0 z-50 backdrop-blur-md bg-white/90 border-b border-slate-200/60 shadow-sm">
-  <div className="max-w-7xl mx-auto px-8 h-24 flex items-center justify-between gap-12">
-    
-    {/* 1. Brand / Logo (Alineado a la izquierda) */}
-    <Link href="/" className="flex items-center space-x-3 group flex-shrink-0">
-      <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-700 to-indigo-600 flex items-center justify-center shadow-md shadow-blue-500/10 group-hover:scale-105 transition-transform">
-        <span className="font-bold text-white tracking-tighter text-xs">INA</span>
-      </div>
-      <div className="hidden sm:block">
-        <span className="font-semibold text-base tracking-tight block text-slate-900 leading-tight">International</span>
-        <span className="text-[9px] tracking-[0.28em] uppercase text-slate-500 block font-medium">Network Advisors</span>
-      </div>
-    </Link>
-    
-    {/* 2. Menú de Navegación (Distribuido a lo ancho en el espacio central) */}
-    <nav className="flex-1 max-w-3xl mx-auto hidden md:flex items-center justify-between text-sm font-medium tracking-widest uppercase text-[11px] text-slate-600">
-      <Link href="/about" className="hover:text-blue-600 transition-colors py-2 relative group">
-        About Us
-        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full" />
-      </Link>
-      
-      <Link href="/practices" className="hover:text-blue-600 transition-colors py-2 relative group">
-        Practice Areas
-        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full" />
-      </Link>
-      
-      <Link href="/leadership" className="hover:text-blue-600 transition-colors py-2 relative group">
-        Leadership
-        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full" />
-      </Link>
-    </nav>
-    
-    {/* 3. Acción Destacada (Alineado a la derecha) */}
-    <div className="flex-shrink-0">
-      <Link href="/contact" className="bg-slate-900 hover:bg-blue-600 text-white text-xs tracking-widest uppercase font-medium px-5 py-3 rounded transition-all shadow-sm">
-        Contact Us
-      </Link>
-    </div>
-
-  </div>
-</header>
-        {/* CONTENIDO PRINCIPAL */}
-        <main className="flex-grow">
-          {children}
-        </main>
-
-        {/* FOOTER LIMPIO */}
-        <footer className="border-t border-slate-200/60 bg-white py-10 text-center text-xs text-slate-400">
-          <div className="max-w-7xl mx-auto px-6 space-y-2 font-light">
-            <p>&copy; 2026 International Network Advisors. All rights reserved. | Confidential</p>
-            <p className="text-slate-300 tracking-widest uppercase text-[10px] font-medium">Confidential &mdash; For Authorized Recipient Use Only</p>
+        {/* 1. BARRA LATERAL FIJA (Izquierda): Identidad de la Empresa */}
+        <aside className="w-80 border-r border-slate-100 min-h-screen fixed left-0 top-0 hidden lg:flex flex-col justify-between p-12 bg-white z-50">
+          <Link href="/" className="space-y-2 group">
+            <div className="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center transition-transform group-hover:scale-105">
+              <span className="font-bold text-white text-xs tracking-tighter">I</span>
+            </div>
+            <div className="pt-4">
+              <span className="font-medium text-xl tracking-tight block text-slate-900">International</span>
+              <span className="text-[10px] tracking-[0.25em] uppercase text-slate-400 block font-semibold mt-1">Network Advisors</span>
+            </div>
+          </Link>
+          
+          <div className="text-[10px] tracking-widest text-slate-300 uppercase font-medium">
+            Boutique Advisory &bull; 2026
           </div>
-        </footer>
+        </aside>
 
+        {/* 2. CONTENEDOR PRINCIPAL DERECHO (Ocupa el resto de la pantalla) */}
+        <div className="flex-1 lg:pl-80 flex flex-col min-h-screen">
+          
+          {/* BARRA HORIZONTAL SUPERIOR: Menú de opciones */}
+          <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100">
+            <div className="max-w-5xl mx-auto px-12 h-24 flex items-center justify-between">
+              
+              {/* Menú Superior Limpio y Ordenado */}
+              <nav className="flex items-center space-x-12 text-xs font-semibold tracking-[0.2em] uppercase text-slate-500">
+                <Link href="/about" className="hover:text-slate-900 transition-colors relative py-2 group">
+                  About Us
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-900 transition-all group-hover:w-full" />
+                </Link>
+                <Link href="/practices" className="hover:text-slate-900 transition-colors relative py-2 group">
+                  Practice Areas
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-900 transition-all group-hover:w-full" />
+                </Link>
+                <Link href="/leadership" className="hover:text-slate-900 transition-colors relative py-2 group">
+                  Leadership
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-900 transition-all group-hover:w-full" />
+                </Link>
+                <Link href="/contact" className="hover:text-slate-900 transition-colors relative py-2 group">
+                  Contact Us
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-900 transition-all group-hover:w-full" />
+                </Link>
+              </nav>
+
+              {/* Pequeño indicador de estatus (reemplaza botones toscos) */}
+              <div className="hidden sm:flex items-center space-x-2 text-[10px] tracking-widest text-slate-400 uppercase font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-slate-900" />
+                <span>Global Intelligence</span>
+              </div>
+            </div>
+          </header>
+
+          {/* CONTENIDO INTERNO DE LAS PÁGINAS */}
+          <main className="flex-grow max-w-5xl w-full mx-auto px-12 py-16">
+            {children}
+          </main>
+
+          {/* FOOTER INTEGRADO */}
+          <footer className="border-t border-slate-100 bg-white py-12">
+            <div className="max-w-5xl mx-auto px-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] tracking-widest text-slate-400 uppercase font-medium">
+              <p>&copy; INA. All rights reserved.</p>
+              <p className="text-slate-300">Confidential &mdash; Institutional Use Only</p>
+            </div>
+          </footer>
+
+        </div>
       </body>
     </html>
   );

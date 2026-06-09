@@ -15,39 +15,48 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} antialiased bg-slate-50 text-slate-800 flex flex-col min-h-screen`}>
         
-        {/* HEADER / NAVBAR ELEGANTE Y SEPARADO */}
-        <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-slate-200/60">
-          <div className="max-w-7xl mx-auto px-8 h-24 flex items-center justify-between">
-            
-            {/* Brand / Logo */}
-            <Link href="/" className="flex items-center space-x-4 group">
-              <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-blue-700 to-indigo-600 flex items-center justify-center shadow-md shadow-blue-500/10 group-hover:scale-105 transition-transform">
-                <span className="font-bold text-white tracking-tighter text-sm">INA</span>
-              </div>
-              <div>
-                <span className="font-semibold text-lg tracking-tight block text-slate-900">International</span>
-                <span className="text-[10px] tracking-[0.28em] uppercase text-slate-500 block -mt-0.5 font-medium">Network Advisors</span>
-              </div>
-            </Link>
-            
-            {/* Menú con opciones más separadas y elegantes */}
-            <nav className="hidden md:flex items-center space-x-12 text-sm font-medium tracking-wide text-slate-600">
-              <Link href="/about" className="hover:text-blue-600 transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 hover:after:w-full after:transition-all">
-                About Us
-              </Link>
-              <Link href="/practices" className="hover:text-blue-600 transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 hover:after:w-full after:transition-all">
-                Practice Areas
-              </Link>
-              <Link href="/leadership" className="hover:text-blue-600 transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 hover:after:w-full after:transition-all">
-                Leadership
-              </Link>
-              <Link href="/contact" className="bg-slate-900 hover:bg-blue-600 text-white font-normal px-5 py-2.5 rounded transition-all shadow-sm">
-                Contact Us
-              </Link>
-            </nav>
-          </div>
-        </header>
+{/* HEADER / NAVBAR ELEGANTE DISTRIBUIDO A LO ANCHO */}
+<header className="sticky top-0 z-50 backdrop-blur-md bg-white/90 border-b border-slate-200/60 shadow-sm">
+  <div className="max-w-7xl mx-auto px-8 h-24 flex items-center justify-between gap-12">
+    
+    {/* 1. Brand / Logo (Alineado a la izquierda) */}
+    <Link href="/" className="flex items-center space-x-3 group flex-shrink-0">
+      <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-700 to-indigo-600 flex items-center justify-center shadow-md shadow-blue-500/10 group-hover:scale-105 transition-transform">
+        <span className="font-bold text-white tracking-tighter text-xs">INA</span>
+      </div>
+      <div className="hidden sm:block">
+        <span className="font-semibold text-base tracking-tight block text-slate-900 leading-tight">International</span>
+        <span className="text-[9px] tracking-[0.28em] uppercase text-slate-500 block font-medium">Network Advisors</span>
+      </div>
+    </Link>
+    
+    {/* 2. Menú de Navegación (Distribuido a lo ancho en el espacio central) */}
+    <nav className="flex-1 max-w-3xl mx-auto hidden md:flex items-center justify-between text-sm font-medium tracking-widest uppercase text-[11px] text-slate-600">
+      <Link href="/about" className="hover:text-blue-600 transition-colors py-2 relative group">
+        About Us
+        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full" />
+      </Link>
+      
+      <Link href="/practices" className="hover:text-blue-600 transition-colors py-2 relative group">
+        Practice Areas
+        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full" />
+      </Link>
+      
+      <Link href="/leadership" className="hover:text-blue-600 transition-colors py-2 relative group">
+        Leadership
+        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full" />
+      </Link>
+    </nav>
+    
+    {/* 3. Acción Destacada (Alineado a la derecha) */}
+    <div className="flex-shrink-0">
+      <Link href="/contact" className="bg-slate-900 hover:bg-blue-600 text-white text-xs tracking-widest uppercase font-medium px-5 py-3 rounded transition-all shadow-sm">
+        Contact Us
+      </Link>
+    </div>
 
+  </div>
+</header>
         {/* CONTENIDO PRINCIPAL */}
         <main className="flex-grow">
           {children}

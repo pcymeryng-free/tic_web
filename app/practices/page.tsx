@@ -1,60 +1,60 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Shield, TrendingUp, Users, Cpu, Rocket } from 'lucide-react';
+import React from 'react';
 
-const services = [
-  { id: 'regulatory', icon: Shield, title: 'Regulatory Strategy', desc: 'Spectrum licensing, compliance frameworks, and government liaison across Caribbean and Latin American jurisdictions. We align corporate goals with national regulatory mandates.' },
-  { id: 'commercial', icon: TrendingUp, title: 'Commercial Strategy', desc: 'Comprehensive market entry models, pricing architecture optimization, product portfolio development, and data-driven revenue optimization for operators.' },
-  { id: 'operator', icon: Users, title: 'Operator Advisory', desc: 'Strategic counsel to regional telecom operators on sustainable growth, operational alignment, and maximum readiness for Mergers & Acquisitions (M&A).' },
-  { id: 'digital', icon: Cpu, title: 'Digital Transformation', desc: 'Technology roadmap development, legacy infrastructure modernization, digital marketing integration, and product innovation advisory for the digital age.' },
-  { id: 'gtm', icon: Rocket, title: 'Go-to-Market Execution', desc: 'Launch planning mechanics, precise competitive positioning, and commercial rollout strategies designed to capture market share securely.' }
+const practicesList = [
+  { num: "I", title: "Regulatory Strategy", desc: "Spectrum licensing management, compliance optimization, and strategic state liaison across Caribbean and Latin American jurisdictions. We ensure multinational deployment models align seamlessly with national sovereignty frameworks." },
+  { num: "II", title: "Commercial Strategy", desc: "Comprehensive market entry architecture, pricing mechanics development, portfolio optimization, and data-driven revenue management models designed specifically for regional operators." },
+  { num: "III", title: "Operator Advisory", desc: "Strategic counsel to board-level directors on sustainable growth trajectories, structural alignment, operational due diligence, and maximum readiness for M&A scenarios." },
+  { num: "IV", title: "Digital Transformation", desc: "Modernization roadmaps for core telecommunications infrastructure, digital asset integration, and product innovation architectures engineered for the current regulatory landscape." },
+  { num: "V", title: "Go-to-Market Execution", desc: "Launch engineering, precise competitive positioning, and commercial rollout mechanics calibrated to capture market share within complex, multi-stakeholder territories." }
 ];
 
 export default function Practices() {
-  const [activeTab, setActiveTab] = useState('regulatory');
-  const activeService = services.find(s => s.id === activeTab) || services[0];
-  const Icon = activeService.icon;
-
   return (
-    <div className="max-w-6xl mx-auto px-6 py-24">
-      <div className="mb-16">
-        <span className="text-xs font-bold tracking-widest uppercase text-blue-500 block mb-2">Our Capabilities</span>
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">Core Practice Areas</h2>
-      </div>
+    <div className="max-w-4xl mx-auto px-8 py-12 space-y-16 animate-fade-in">
+      
+      {/* ENCABEZADO */}
+      <section className="space-y-4 border-b border-slate-100 pb-10">
+        <span className="text-[10px] font-semibold tracking-[0.3em] uppercase text-slate-400 block">
+          Capabilities Matrix &bull; Institutional Counsel
+        </span>
+        <h1 className="font-serif text-4xl md:text-5xl font-normal text-slate-900 tracking-tight">
+          Practice Areas
+        </h1>
+        <p className="text-sm text-slate-500 font-light max-w-2xl leading-relaxed">
+          Targeted executive services covering the strategic, commercial, and regulatory dimensions of global telecommunications.
+        </p>
+      </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start bg-slate-900/20 border border-slate-900 p-8 rounded-xl backdrop-blur-sm">
-        {/* Menú de selección izquierdo */}
-        <div className="lg:col-span-4 space-y-2">
-          {services.map((service) => (
-            <button
-              key={service.id}
-              onClick={() => setActiveTab(service.id)}
-              className={`w-full text-left px-4 py-3 rounded text-sm font-medium transition-all flex items-center justify-between group ${
-                activeTab === service.id
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'bg-transparent text-slate-400 hover:bg-slate-900 hover:text-slate-200'
-              }`}
-            >
-              <span>{service.title}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Panel de visualización derecho */}
-        <div className="lg:col-span-8 p-6 bg-slate-950/50 border border-slate-900 rounded-lg min-h-[250px] flex flex-col justify-between animate-fade-in">
-          <div>
-            <div className="w-12 h-12 rounded bg-blue-950/80 border border-blue-900/50 flex items-center justify-center text-blue-400 mb-6">
-              <Icon className="w-6 h-6" />
+      {/* REJILLA EDITORIAL DE SERVICIOS */}
+      <section className="divide-y divide-slate-100">
+        {practicesList.map((item, index) => (
+          <div key={index} className="grid grid-cols-1 md:grid-cols-12 gap-6 py-10 first:pt-0 last:pb-0 items-start">
+            
+            {/* Indicador Romano */}
+            <div className="md:col-span-1 text-[11px] font-mono font-bold text-slate-300 tracking-widest">
+              {item.num}.
             </div>
-            <h3 className="text-2xl font-bold text-white mb-4">{activeService.title}</h3>
-            <p className="text-slate-300 text-sm leading-relaxed font-light">{activeService.desc}</p>
+            
+            {/* Título de la Práctica */}
+            <div className="md:col-span-4">
+              <h3 className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-900 leading-tight md:pt-0.5">
+                {item.title}
+              </h3>
+            </div>
+            
+            {/* Descripción */}
+            <div className="md:col-span-7">
+              <p className="text-xs text-slate-500 leading-relaxed font-light">
+                {item.desc}
+              </p>
+            </div>
+
           </div>
-          <div className="text-xs text-slate-500 border-t border-slate-900 pt-4 mt-6">
-            International Network Advisors &bull; Strategic Execution
-          </div>
-        </div>
-      </div>
+        ))}
+      </section>
+
     </div>
   );
 }

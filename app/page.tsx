@@ -1,4 +1,10 @@
+"use client"; // <--- ESTA LÍNEA ES OBLIGATORIA EN LA PARTE SUPERIOR
 
+import React from 'react';
+import { Shield, TrendingUp, Users, Cpu, Rocket, Mail, Globe, ExternalLink } from 'lucide-react';
+
+export default function Home() {
+  // ... resto del código igual
 import React from 'react';
 import { Shield, TrendingUp, Users, Cpu, Rocket, Mail, Globe, ExternalLink } from 'lucide-react';
 

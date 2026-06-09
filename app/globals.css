@@ -7,7 +7,19 @@ html {
 }
 
 body {
-  background-color: #f8fafc; /* bg-slate-50 */
-  color: #1e293b; /* text-slate-800 */
+  background-color: #ffffff; /* Blanco absoluto */
+  color: #0f172a; /* Slate 900 para una lectura ultra nítida */
   -webkit-font-smoothing: antialiased;
+}
+
+/* Ocultar barras de scroll feas para mantener el minimalismo */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+  background: #f1f5f9;
+  border-radius: 3px;
 }

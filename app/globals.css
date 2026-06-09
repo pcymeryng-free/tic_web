@@ -7,19 +7,12 @@ html {
 }
 
 body {
-  background-color: #ffffff; /* Blanco absoluto */
-  color: #0f172a; /* Slate 900 para una lectura ultra nítida */
-  -webkit-font-smoothing: antialiased;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-family: var(--font-sans), sans-serif;
 }
 
-/* Ocultar barras de scroll feas para mantener el minimalismo */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #ffffff;
-}
-::-webkit-scrollbar-thumb {
-  background: #f1f5f9;
-  border-radius: 3px;
+/* Aplicación de fuente Serif para los títulos corporativos */
+h1, h2, .font-serif {
+  font-family: var(--font-serif), Georgia, serif;
 }

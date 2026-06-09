@@ -1,86 +1,81 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "International Network Advisors | Telecom & Regulatory Strategy",
-  description: "Boutique executive consulting firm specializing in telecommunications.",
+  title: "International Network Advisors | Telecommunications & Regulatory Strategy",
+  description: "Boutique executive consulting firm specializing in global telecommunications strategy.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} antialiased bg-white text-slate-900 min-h-screen flex`}>
+    <html lang="en" className={`${playfair.variable} ${inter.variable} scroll-smooth`}>
+      <body className="font-sans antialiased bg-[#fafafa] text-[#1a1a1a] min-h-screen flex flex-col">
         
-        {/* 1. BARRA LATERAL FIJA (Izquierda): Identidad de la Empresa */}
-        <aside className="w-80 border-r border-slate-100 min-h-screen fixed left-0 top-0 hidden lg:flex flex-col justify-between p-12 bg-white z-50">
-          <Link href="/" className="space-y-2 group">
-            <div className="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center transition-transform group-hover:scale-105">
-              <span className="font-bold text-white text-xs tracking-tighter">I</span>
-            </div>
-            <div className="pt-4">
-              <span className="font-medium text-xl tracking-tight block text-slate-900">International</span>
-              <span className="text-[10px] tracking-[0.25em] uppercase text-slate-400 block font-semibold mt-1">Network Advisors</span>
-            </div>
-          </Link>
-          
-          <div className="text-[10px] tracking-widest text-slate-300 uppercase font-medium">
-            Boutique Advisory &bull; 2026
-          </div>
-        </aside>
-
-        {/* 2. CONTENEDOR PRINCIPAL DERECHO (Ocupa el resto de la pantalla) */}
-        <div className="flex-1 lg:pl-80 flex flex-col min-h-screen">
-          
-          {/* BARRA HORIZONTAL SUPERIOR: Menú de opciones */}
-          <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100">
-            <div className="max-w-5xl mx-auto px-12 h-24 flex items-center justify-between">
-              
-              {/* Menú Superior Limpio y Ordenado */}
-              <nav className="flex items-center space-x-12 text-xs font-semibold tracking-[0.2em] uppercase text-slate-500">
-                <Link href="/about" className="hover:text-slate-900 transition-colors relative py-2 group">
-                  About Us
-                  <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-900 transition-all group-hover:w-full" />
-                </Link>
-                <Link href="/practices" className="hover:text-slate-900 transition-colors relative py-2 group">
-                  Practice Areas
-                  <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-900 transition-all group-hover:w-full" />
-                </Link>
-                <Link href="/leadership" className="hover:text-slate-900 transition-colors relative py-2 group">
-                  Leadership
-                  <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-900 transition-all group-hover:w-full" />
-                </Link>
-                <Link href="/contact" className="hover:text-slate-900 transition-colors relative py-2 group">
-                  Contact Us
-                  <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-900 transition-all group-hover:w-full" />
-                </Link>
-              </nav>
-
-              {/* Pequeño indicador de estatus (reemplaza botones toscos) */}
-              <div className="hidden sm:flex items-center space-x-2 text-[10px] tracking-widest text-slate-400 uppercase font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-slate-900" />
-                <span>Global Intelligence</span>
+        {/* GLOBAL EXECUTIVE NAVBAR */}
+        <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100/80">
+          <div className="max-w-6xl mx-auto px-8 h-24 flex items-center justify-between">
+            
+            {/* LOGOTIPO INSTITUCIONAL */}
+            <Link href="/" className="flex items-center space-x-3 tracking-[0.2em] uppercase">
+              <div className="w-2.5 h-2.5 bg-slate-900 rounded-full" />
+              <div className="leading-tight">
+                <span className="font-semibold text-sm block text-slate-900">International</span>
+                <span className="text-[9px] text-slate-400 block font-medium tracking-[0.3em]">Network Advisors</span>
               </div>
+            </Link>
+            
+            {/* NAVEGACIÓN PRINCIPAL HORIZONTAL */}
+            <nav className="hidden md:flex items-center space-x-12 text-[11px] font-medium tracking-[0.25em] uppercase text-slate-500">
+              <Link href="/about" className="hover:text-slate-900 transition-colors duration-300 relative py-2 group">
+                About us
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-950 transition-all duration-300 group-hover:w-full" />
+              </Link>
+              <Link href="/practices" className="hover:text-slate-900 transition-colors duration-300 relative py-2 group">
+                Practice Areas
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-950 transition-all duration-300 group-hover:w-full" />
+              </Link>
+              <Link href="/leadership" className="hover:text-slate-900 transition-colors duration-300 relative py-2 group">
+                Leadership
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-950 transition-all duration-300 group-hover:w-full" />
+              </Link>
+              <Link href="/contact" className="hover:text-slate-900 transition-colors duration-300 relative py-2 group">
+                Contact us
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-slate-950 transition-all duration-300 group-hover:w-full" />
+              </Link>
+            </nav>
+            
+            {/* INDICADOR GEOGRÁFICO */}
+            <div className="hidden lg:block text-[9px] tracking-[0.25em] uppercase text-slate-400 font-medium">
+              HQ &bull; New York
             </div>
-          </header>
 
-          {/* CONTENIDO INTERNO DE LAS PÁGINAS */}
-          <main className="flex-grow max-w-5xl w-full mx-auto px-12 py-16">
-            {children}
-          </main>
+          </div>
+        </header>
 
-          {/* FOOTER INTEGRADO */}
-          <footer className="border-t border-slate-100 bg-white py-12">
-            <div className="max-w-5xl mx-auto px-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] tracking-widest text-slate-400 uppercase font-medium">
-              <p>&copy; INA. All rights reserved.</p>
-              <p className="text-slate-300">Confidential &mdash; Institutional Use Only</p>
+        {/* CONTENIDO PRINCIPAL */}
+        <main className="flex-grow">
+          {children}
+        </main>
+
+        {/* FOOTER CORPORATIVO SOBERBIO */}
+        <footer className="border-t border-slate-100 bg-white py-16 text-[10px] tracking-[0.2em] uppercase text-slate-400 font-medium">
+          <div className="max-w-6xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <p>&copy; 2026 International Network Advisors LLC.</p>
+            <div className="flex space-x-8 text-slate-300">
+              <span>Privacy Policy</span>
+              <span>&bull;</span>
+              <span>Terms of Engagement</span>
+              <span>&bull;</span>
+              <span className="text-slate-400">Confidential</span>
             </div>
-          </footer>
+          </div>
+        </footer>
 
-        </div>
       </body>
     </html>
   );

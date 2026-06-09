@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Estilos personalizados sutiles para el comportamiento del scroll */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #020617; /* bg-slate-950 */
-  color: #f8fafc; /* text-slate-50 */
+  background-color: #f8fafc; /* bg-slate-50 */
+  color: #1e293b; /* text-slate-800 */
+  -webkit-font-smoothing: antialiased;
 }
